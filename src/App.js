@@ -9,7 +9,7 @@ function App() {
 
 const [inputdata,setInputdata]=useState('');
 const [todoarr,setTodoarr]=useState([]);
-// const [check,setCheck]=useState(false)
+const [check,setCheck]=useState(false)
 
 // Editing
 const [toggle,setToggle]=useState(false);
@@ -48,11 +48,13 @@ const handleSaveEdit = () => {
 
 
 
-// const handleCheckbox=(index)=>{
-//   if(check!=false){
+const handleCheckbox=(index)=>{
 
-//   }
-// }
+const checkboxitems= todoarr.map((item,id)=>{
+  id === index ? !item :item
+});
+set
+}
 
   return (
     <div className="AppMaincontainer w-full h-[100vh] flex justify-center items-center bg-slate-500">
