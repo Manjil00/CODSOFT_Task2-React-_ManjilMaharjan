@@ -25,7 +25,8 @@ const handleAdd=()=>{
 const handleDelete=(id)=>{
   const updateditems= todoarr.filter((item,index)=>{
     return index!== id;
-  })
+  });
+  setTodoarr(updateditems);
 }
 
 // const handleCheckbox=(index)=>{
