@@ -79,7 +79,7 @@ set
                   <div key={index}
                   className="list1 flex justify-between items-center gap-5 h-[50px] w-full bg-slate-300 rounded-lg">
                   <input 
-                  // onClick={handleCheckbox(index)}
+                  onClick={handleCheckbox(index)}
                   type="checkbox" className="h-[20px] w-[20px] ml-5" ></input>
                   <h1 className="font-sans text-xs md:text-lg break-words text-white h-auto">{item}</h1>
                   <div className="btn flex justify-end items-centergap-3 h-auto w-auto ">
