@@ -22,19 +22,31 @@ const handleAdd=()=>{
       setInputdata('');
     }
 }
-
-const handleEdit=(index)=>{
-  setInputdata(todoarr[index]);
-  setToggle(true);
-  setCurIndex(index);
-}
-
 const handleDelete=(id)=>{
   const updateditems= todoarr.filter((item,index)=>{
     return index!== id;
   });
   setTodoarr(updateditems);
 }
+
+const handleEdit=(index)=>{
+  setInputdata(todoarr[index]);
+  setToggle(true);
+  setCurIndex(index);
+}
+const handleSaveEdit = () => {
+  if (toggle) {
+    const editedItems = todoarr.map((item, index) =>
+      index === curIndex ? inputdata : item
+    );
+    setTodoarr(editedItems);
+    setToggle(false);
+    setInputdata('');
+    setCurIndex(null);
+  }
+};
+
+
 
 // const handleCheckbox=(index)=>{
 //   if(check!=false){
@@ -50,7 +62,7 @@ const handleDelete=(id)=>{
             value={inputdata}
             type="text" className="border-2 border-black w-full p-2 rounded-lg" placeholder="Add Todo List"/>
             {
-              toggle ?<button onClick={handleAdd}
+              toggle ?<button onClick={handleSaveEdit}
               className="h-[40px] w-[80px] bg-blue-500 text-white font-bold text-center rounded-lg">Save Edit</button>
               : <button onClick={handleAdd}
               className="h-[40px] w-[80px] bg-blue-500 text-white font-bold text-center rounded-lg">Add</button>
@@ -70,7 +82,7 @@ const handleDelete=(id)=>{
                   <h1 className="font-sans text-xs md:text-lg break-words text-white h-auto">{item}</h1>
                   <div className="btn flex justify-end items-centergap-3 h-auto w-auto ">
                         <button key={item}
-                        onClick={handleEdit(index)}
+                        onClick={()=>handleEdit(index)}
                         className="edit h-[30px] w-[30px]"><CiEdit /></button>
                         <button key={index}
                         onClick={()=>handleDelete(index)}
