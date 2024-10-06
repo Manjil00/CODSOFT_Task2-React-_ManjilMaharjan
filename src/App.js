@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 
 // ICONS
-import { CiEdit } from "react-icons/ci";
 import { AiTwotoneDelete } from "react-icons/ai";
+import { CiEdit } from "react-icons/ci";
 import { SiTicktick } from "react-icons/si";
 
 function App() {
@@ -51,8 +51,8 @@ function App() {
   };
 
   return (
-    <div className="AppMaincontainer w-full h-[100vh] flex justify-center items-start bg-bgcolor">
-      <div className="TodoContainer w-[50%] h-auto bg-white rounded-xl p-4 mt-10">
+    <div className="AppMaincontainer w-full h-[1000vh] flex justify-start md:justify-center items-start bg-bgcolor">
+      <div className="TodoContainer w-[80%] md:w-[50%] h-auto bg-white rounded-xl p-4 mt-10 ml-5 md:ml-0">
         <div className="inputs flex flex-col justify-start items-center gap-5">
           <input 
             onChange={(e) => setInputdata(e.target.value)}
@@ -78,29 +78,25 @@ function App() {
           }
         </div>
 
-        <div className="List w-[600px] h-auto rounded-lg flex flex-col justify-start items-center gap-5 mt-8">
+        <div className="List w-[100px] md:w-full h-auto rounded-lg flex flex-col justify-center items-start gap-5 mt-8 break-words">
           {todoarr.map((item, index) => (
-            <div 
-              key={index}
-              className={`list1 flex justify-between items-center gap-5 h-[50px] w-full rounded-lg shadow-xl shadow-black ${item.isGreen ? "bg-green-400" : "bg-slate-300"}`}
+            <div key={index}
+              className={`list1 break-words flex justify-between items-center gap-5 h-[50px] w-auto md:w-full rounded-lg shadow-xl shadow-black ${item.isGreen ? "bg-green-400" : "bg-slate-300"}`}
             >
-              <button 
-                onClick={() => handleCheck(index)}
+              <button onClick={() => handleCheck(index)}
                 className="text-green-600 h-[40px] w-[40px] ml-2">
                 <SiTicktick />
               </button>
 
-              <h1 className="font-sans text-xs md:text-lg break-words text-white h-auto">{item.text}</h1>
+              <h1 className="font-sans text-xs md:text-lg break-words text-black h-auto">{item.text}</h1>
               
               <div className="btn flex justify-end items-center gap-3 h-auto w-auto">
-                <button 
-                  onClick={() => handleEdit(index)}
+                <button onClick={() => handleEdit(index)}
                   disabled={item.isGreen} // Disable when isGreen is true
                   className={`edit h-[30px] w-[30px] ${item.isGreen ? 'opacity-50 cursor-not-allowed' : ''}`}>
                   <CiEdit />
                 </button>
-                <button 
-                  onClick={() => handleDelete(index)}
+                <button onClick={() => handleDelete(index)}
                   disabled={item.isGreen} // Disable when isGreen is true
                   className={`delete h-[30px] w-[30px] ${item.isGreen ? 'opacity-50 cursor-not-allowed' : ''}`}>
                   <AiTwotoneDelete />
