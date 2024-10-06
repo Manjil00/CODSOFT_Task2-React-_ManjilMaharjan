@@ -9,11 +9,13 @@ function App() {
 
 const [inputdata,setInputdata]=useState('');
 const [todoarr,setTodoarr]=useState([]);
-const [check,setCheck]=useState(false)
 
 // Editing
 const [toggle,setToggle]=useState(false);
 const [curIndex,setCurIndex]=useState(null);
+
+//checkbox
+const [checked,setChecked]=useState([]);
 
 
 const handleAdd=()=>{
@@ -46,18 +48,17 @@ const handleSaveEdit = () => {
   }
 };
 
+const handleCheckbox = (index) => {
+  setChecked((prevChecked) => {
+    const updatedChecked = [...prevChecked];
+    updatedChecked[index] = !updatedChecked[index]; // Toggle checked state
+    return updatedChecked;
+  });
+};
 
-
-const handleCheckbox=(index)=>{
-
-const checkboxitems= todoarr.map((item,id)=>{
-  id === index ? !item :item
-});
-set
-}
 
   return (
-    <div className="AppMaincontainer w-full h-[100vh] flex justify-center items-center bg-slate-500">
+    <div className="AppMaincontainer w-full h-[100vh] flex justify-center items-center bg-bgcolor">
         <div className="TodoContainer w-[50%] h-auto bg-white rounded-xl p-4">
           <div className="inputs flex flex-col justify-center items-center gap-5">
             <input onChange={(e)=>setInputdata(e.target.value)}
@@ -75,11 +76,15 @@ set
           <div className="List w-[600px] h-auto rounded-lg flex flex-col justify-start   items-center gap-5 mt-8">
             {
               todoarr.map((item,index)=>{
+                const ischecked=checked[index];
                 return (
                   <div key={index}
-                  className="list1 flex justify-between items-center gap-5 h-[50px] w-full bg-slate-300 rounded-lg">
-                  <input 
-                  onClick={handleCheckbox(index)}
+                  className={`list1 flex justify-between items-center gap-5 h-[50px] w-full bg-slate-300 rounded-lg
+                  ${ischecked ? "bg-green-400": "bg-slate-300"}`}>
+
+                  <input  onChange={()=>handleCheckbox(index)}
+                          checked={isChecked}
+
                   type="checkbox" className="h-[20px] w-[20px] ml-5" ></input>
                   <h1 className="font-sans text-xs md:text-lg break-words text-white h-auto">{item}</h1>
                   <div className="btn flex justify-end items-centergap-3 h-auto w-auto ">
