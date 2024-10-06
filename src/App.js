@@ -29,7 +29,7 @@ function App() {
   }
 
   const handleEdit = (index) => {
-    setInputdata(todoarr[index].text); 
+    setInputdata(todoarr[index].text);
     setToggle(true);
     setCurIndex(index);
   }
@@ -54,18 +54,21 @@ function App() {
   };
 
   return (
-    <div className="AppMaincontainer w-full h-[100vh] flex justify-center items-center bg-bgcolor">
-      <div className="TodoContainer w-[50%] h-auto bg-white rounded-xl p-4">
-        <div className="inputs flex flex-col justify-center items-center gap-5">
+    <div className="AppMaincontainer w-full h-[100vh] flex justify-center items-start bg-bgcolor">
+      
+      <div className="TodoContainer w-[50%] h-auto bg-white rounded-xl p-4 mt-10">
+        <div className="inputs flex flex-col justify-start items-center gap-5">
           <input onChange={(e) => setInputdata(e.target.value)}
             value={inputdata}
             type="text" className="border-2 border-black w-full p-2 rounded-lg" placeholder="Add Todo List" />
           {
             toggle ?
               <button onClick={handleSaveEdit}
-                className="h-[40px] w-[80px] bg-blue-500 text-white font-bold text-center rounded-lg">Save Edit</button>
+              disabled={item.isGreen}
+                className={`h-[40px] w-[80px] bg-blue-500 text-white font-bold text-center rounded-lg ${item.isGreen ? 'opacity-50 cursor-not-allowed' : ''}`}>Save Edit</button>
               : <button onClick={handleAdd}
-                className="h-[40px] w-[80px] bg-blue-500 text-white font-bold text-center rounded-lg">Add</button>
+              disabled={item.isGreen}
+                className={`h-[40px] w-[80px] bg-blue-500 text-white font-bold text-center rounded-lg ${item.isGreen ? 'opacity-50 cursor-not-allowed' : ''}`}>Add</button>
           }
         </div>
 
@@ -74,7 +77,7 @@ function App() {
             todoarr.map((item, index) => {
               return (
                 <div key={index}
-                  className={`list1 flex justify-between items-center gap-5 h-[50px] w-full rounded-lg
+                  className={`list1 flex justify-between items-center gap-5 h-[50px] w-full rounded-lg shadow-xl shadow-black
                   ${item.isGreen ? "bg-green-400" : "bg-slate-300"}`}>
 
                   <button onClick={() => handleCheck(index)}
@@ -94,8 +97,8 @@ function App() {
             })}
         </div>
       </div>
-    </div>
-  );
+      </div>
+);
 }
 
 export default App;
