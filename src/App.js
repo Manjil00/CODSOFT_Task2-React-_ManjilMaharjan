@@ -22,6 +22,7 @@ const handleAdd=()=>{
     if(inputdata.trim()){
       setTodoarr([...todoarr, inputdata]);
       setInputdata('');
+      setChecked([...checked, false]);
     }
 }
 const handleDelete=(id)=>{
@@ -76,11 +77,11 @@ const handleCheckbox = (index) => {
           <div className="List w-[600px] h-auto rounded-lg flex flex-col justify-start   items-center gap-5 mt-8">
             {
               todoarr.map((item,index)=>{
-                const ischecked=checked[index];
+                const isChecked=checked[index];
                 return (
                   <div key={index}
                   className={`list1 flex justify-between items-center gap-5 h-[50px] w-full bg-slate-300 rounded-lg
-                  ${ischecked ? "bg-green-400": "bg-slate-300"}`}>
+                  ${isChecked ? "bg-green-400": "bg-slate-300"}`}>
 
                   <input  onChange={()=>handleCheckbox(index)}
                           checked={isChecked}
