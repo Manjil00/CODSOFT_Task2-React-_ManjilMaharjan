@@ -13,7 +13,8 @@ function App() {
   const [toggle, setToggle] = useState(false);
   const [curIndex, setCurIndex] = useState(null);
 
-  const handleAdd = () => {
+  const handleAdd = (e) => {
+    e.preventDefault();
     if (inputdata.trim()) {
       setInputdata('');
       setTodoarr([...todoarr, { text: inputdata, isGreen: false }]);
@@ -31,7 +32,8 @@ function App() {
     setCurIndex(index);
   };
 
-  const handleSaveEdit = () => {
+  const handleSaveEdit = (e) => {
+    e.preventDefault();
     if (toggle) {
       const editedItems = todoarr.map((item, index) =>
         index === curIndex ? { ...item, text: inputdata } : item
@@ -54,23 +56,21 @@ function App() {
     <div className="AppMaincontainer w-full h-[1000vh] flex justify-start md:justify-center items-start bg-bgcolor">
       <div className="TodoContainer w-[80%] md:w-[50%] h-auto bg-white rounded-xl p-4 mt-10 ml-5 md:ml-0">
         <div className="inputs flex flex-col justify-start items-center gap-5">
-          <input 
+          <input
             onChange={(e) => setInputdata(e.target.value)}
             value={inputdata}
-            type="text" 
-            className="border-2 border-black w-full p-2 rounded-lg" 
-            placeholder="Add Todo List" 
+            type="text"
+            className="border-2 border-black w-full p-2 rounded-lg"
+            placeholder="Add Todo List"
           />
           {
             toggle ? (
-              <button 
-                onClick={handleSaveEdit}
+              <button onClick={handleSaveEdit}
                 className={`h-[40px] w-[80px] bg-blue-500 text-white font-bold text-center rounded-lg`}>
                 Save Edit
               </button>
             ) : (
-              <button 
-                onClick={handleAdd}
+              <button onClick={handleAdd}
                 className={`h-[40px] w-[80px] bg-blue-500 text-white font-bold text-center rounded-lg`}>
                 Add
               </button>
